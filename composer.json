@@ -1,0 +1,30 @@
+{
+  "name": "fudge/silex-container-aware",
+  "type": "service-provider",
+  "description": "Provides simple DI to your controllers within Silex",
+  "keywords": ["di", "dependency injection", "container aware"],
+  "license": "MIT",
+  "version": "0.1.0",
+
+  "authors": [
+    {
+      "name": "Ben Colegate",
+      "email": "ben@bencolegate.co.uk",
+      "homepage": "https://github.com/BennyC"
+    }
+  ],
+
+  "autoload": {
+    "psr-4": { "Fudge\\SilexComponents\\DependencyInjection\\": ["src/", "tests/"] }
+  },
+
+  "require": {
+    "php": ">=5.4",
+    "silex/silex": "~1.1"
+  },
+
+  "require-dev": {
+    "phpunit/phpunit": "~3.7",
+    "squizlabs/php_codesniffer": "~1.5"
+  }
+}
