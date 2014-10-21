@@ -1,5 +1,5 @@
 {
-  "name": "fudge/silex-container-aware",
+  "name": "fudge/silex-dependency-injection",
   "type": "service-provider",
   "description": "Provides simple DI to your controllers within Silex",
   "keywords": ["di", "dependency injection", "container aware"],
