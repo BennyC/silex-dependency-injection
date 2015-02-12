@@ -2,7 +2,7 @@
 
 namespace Fudge\SilexComponents\DependencyInjection\Fixtures;
 
-class ControllerExample
+class StandardController
 {
     public function __construct(Foo $bar)
     {

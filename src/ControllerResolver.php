@@ -9,25 +9,20 @@ namespace Fudge\SilexComponents\DependencyInjection;
 class ControllerResolver extends \Silex\ControllerResolver
 {
     /**
-     * @see Silex\ControllerResolver::createController
-     */
-    protected function createController($controller)
-    {
-        list($class, $method) = explode('::', $controller, 2);
-
-        return [$this->buildController($class), $method];
-    }
-
-    /**
      * Will go through the controller to find all of the dependencies, will
      * then find them within the container.
      * @param string
      * @return mixed
      */
-    public function buildController($controllerName)
+    protected function instantiateController($controllerName)
     {
         $reflection = new \ReflectionClass($controllerName);
         $construct  = $reflection->getConstructor();
+
+        if (! $construct) {
+            return $reflection->newInstance();
+        }
+
         $parameters = $construct->getParameters();
         $list = [];
 

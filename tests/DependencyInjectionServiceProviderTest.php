@@ -27,6 +27,8 @@ class DependencyInjectionServiceProviderTest extends \PHPUnit_Framework_TestCase
     {
         $app = new Application;
         $app->register(new DependencyInjectionServiceProvider);
+        $app->boot();
+
         $this->assertInstanceOf(__NAMESPACE__."\\ControllerResolver", $app['resolver']);
     }
 }
