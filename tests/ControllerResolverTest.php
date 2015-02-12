@@ -58,6 +58,20 @@ class ControllerResolverTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @group controllerCreation
+     */
+    public function testMissingDependencies()
+    {
+        $this->setExpectedException('\RuntimeException');
+
+        $app = new Application;
+        $request = $this->createRequestForController(StandardController::class.'::getFoo');
+
+        $controllerResolver = new ControllerResolver($app, $app['logger']);
+        list($controller, $methodName) = $controllerResolver->getController($request);
+    }
+
+    /**
      * Create a Symfony Request with the "_controller" attribute set to the
      * value of $controllerString
      * @coversNothing

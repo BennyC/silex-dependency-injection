@@ -24,12 +24,29 @@ class ControllerResolver extends \Silex\ControllerResolver
         }
 
         $parameters = $construct->getParameters();
-        $list = [];
-
-        foreach ($parameters as $p) {
-            array_push($list, $this->app[$p->getClass()->name]);
-        }
+        $list = $this->createArgumentList($parameters);
 
         return $reflection->newInstanceArgs($list);
+    }
+
+    /**
+     * Create a list of dependencies ready to inject into the new
+     * instance.
+     * @param array
+     * @return array
+     */
+    protected function createArgumentList(array $parameters)
+    {
+        $app = $this->app;
+
+        return array_map(function ($p) use ($app) {
+            $className = $p->getClass()->name;
+
+            if (! isset($app[$className])) {
+                throw new \RuntimeException(sprintf('Missing service definition within Application Container: %s', $className));
+            }
+
+            return $app[$className];
+        }, $parameters);
     }
 }
