@@ -43,7 +43,9 @@ class ControllerResolver extends \Silex\ControllerResolver
             $className = $p->getClass()->name;
 
             if (! isset($app[$className])) {
-                throw new \RuntimeException(sprintf('Missing service definition within Application Container: %s', $className));
+                throw new \RuntimeException(
+                    sprintf('Missing service definition within Application Container: %s', $className)
+                );
             }
 
             return $app[$className];
